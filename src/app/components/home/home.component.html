@@ -1,0 +1,51 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-2'>Recherche</div>
+      <div class='col-md-4'>
+        <input type='text' placeholder="Recherche" [(ngModel)]='listFilter'  />
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        
+      </div>
+    </div>
+    <div class='table-responsive'>
+      <table class='table' >
+        <thead>
+          <tr>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>email</th>
+            <th>race</th>
+            <th>nourriture</th>
+            <th>amis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let user of filteredusers'>
+            <td><a [routerLink]="['/user', user.id]">
+              {{ user.nom }}
+            </a>
+            </td>
+            <td>
+              {{ user.prenom }}
+            </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.race }}</td>
+            <td>{{ user.nourriture }}</td>
+            <td *ngFor='let amis of filteredusers.amis'> {{ amis.nom }} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
